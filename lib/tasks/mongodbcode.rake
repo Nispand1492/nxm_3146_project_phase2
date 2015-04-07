@@ -8,13 +8,17 @@ namespace :mongodbcode do
 	i=1
 	mydata=open(myfile).read
 	json=JSON.parse(mydata)
+#	coll = conn.collection("test Collection")
 	result=json["variables"]
 	result.each do |data|
 	puts "Inserting data #{i}"		
 	id = conn['CENSUSDATA'].insert_one(result[data[0]])
 	i = i+1
+	if i==13000
+		break
 	end
-	puts "mongodb work done"
+	end
+	puts "Data Inserted Into MongoDb:: #{i}"
   end
 
 end
