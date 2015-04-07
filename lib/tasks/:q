@@ -1,0 +1,28 @@
+namespace :toworkwithmysql do
+  desc "TODO"
+  task configmysql: :environment do
+	require 'mysql2'
+  	client=Mysql2::Client.new(:host => 'localhost', :username => 'root', :password => 'nispand1492')
+	client.query('CREATE DATABASE IF NOT EXISTS ruby')
+	puts "Database Created Successfully"	
+	client.query('USE ruby')
+	client.query('CREATE TABLE IF NOT EXISTS 
+			CENSUSDATA (
+					Name VARCHAR(80) PRIMARY KEY,	
+					Label VARCHAR(80),
+					Concept VARCHAR(80),
+					Required VARCHAR(30),
+					PredicateType VARCHAR(50)
+				   )'
+		      )
+	puts 'table created'
+	myfile="mydata.txt"
+	mydata = open(myfile).read
+	json=JSON.parse(mydata)
+#	puts json
+	puts json[""][""]
+	mydata.close
+	client.close
+  end
+
+end
