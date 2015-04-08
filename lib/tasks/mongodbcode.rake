@@ -14,11 +14,8 @@ namespace :mongodbcode do
 	puts "Inserting data #{i}"		
 	id = conn['CENSUSDATA'].insert_one(result[data[0]])
 	i = i+1
-	if i==13000
-		break
 	end
-	end
-	puts "Data Inserted Into MongoDb:: #{i}"
+	puts "Total Data Inserted:: #{i}......mongodb work done"
   end
 
 end
